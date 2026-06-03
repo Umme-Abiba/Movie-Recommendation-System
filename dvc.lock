@@ -1,0 +1,50 @@
+schema: '2.0'
+stages:
+  ingestion:
+    cmd: python src/data_ingestion.py
+    deps:
+    - path: data/movies_metadata.csv
+      hash: md5
+      md5: 0b4649bd902b000d08e98a2396f1d98d
+      size: 34490671
+    - path: src/data_ingestion.py
+      hash: md5
+      md5: 4c0ee98300033880d9c3544c5030e0b6
+      size: 1226
+    outs:
+    - path: artifacts/raw/raw_data.csv
+      hash: md5
+      md5: 6380a83861d70fcd04b3396b4cb2bf98
+      size: 34672582
+  validation:
+    cmd: python src/data_validation.py
+    deps:
+    - path: artifacts/raw/raw_data.csv
+      hash: md5
+      md5: 6380a83861d70fcd04b3396b4cb2bf98
+      size: 34672582
+    - path: src/data_validation.py
+      hash: md5
+      md5: fbb3f697a98f505a322af75ea5b702ba
+      size: 2966
+    outs:
+    - path: artifacts/validation/status.txt
+      hash: md5
+      md5: f984b0cb824814f3a10f12ef7b5d4a71
+      size: 505
+  preprocessing:
+    cmd: python src/data_preprocessing.py
+    deps:
+    - path: artifacts/raw/raw_data.csv
+      hash: md5
+      md5: 6380a83861d70fcd04b3396b4cb2bf98
+      size: 34672582
+    - path: src/data_preprocessing.py
+      hash: md5
+      md5: fbe7e155630fda1854cb6facd2bc6ffe
+      size: 2568
+    outs:
+    - path: artifacts/processed/cleaned_data.csv
+      hash: md5
+      md5: b476b42a88709d6b8bc703b28a021dd7
+      size: 4827749
