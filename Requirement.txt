@@ -1,7 +1,0 @@
-dvc 
-pandas
-sckit-learn
-xgboost
-nltk
-numpy
-PyYAML
