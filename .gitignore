@@ -5,7 +5,11 @@
 .dvc/tmp/
 artifacts/
 Data/
+<<<<<<< HEAD
 DAproject.ipynb
+=======
+
+>>>>>>> 88cd9d5 (init commit)
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
