@@ -9,7 +9,11 @@ Data/
 DAproject.ipynb
 =======
 
+<<<<<<< HEAD
 >>>>>>> 88cd9d5 (init commit)
+=======
+DAproject.ipynb
+>>>>>>> 2e8f329 (Add Feature engineering pipeline)
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
