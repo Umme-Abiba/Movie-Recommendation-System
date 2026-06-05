@@ -48,3 +48,19 @@ stages:
       hash: md5
       md5: b476b42a88709d6b8bc703b28a021dd7
       size: 4827749
+  feature_engineering:
+    cmd: python src/feature_engineering.py
+    deps:
+    - path: artifacts/processed/cleaned_data.csv
+      hash: md5
+      md5: b476b42a88709d6b8bc703b28a021dd7
+      size: 4827749
+    - path: src/feature_engineering.py
+      hash: md5
+      md5: 36872dc5048e23772c4eb796ead3f77b
+      size: 2645
+    outs:
+    - path: artifacts/featured/featured_data.csv
+      hash: md5
+      md5: 1783502f6084b749a8364bbb062a1232
+      size: 5308551
