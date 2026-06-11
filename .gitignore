@@ -5,7 +5,6 @@
 .dvc/tmp/
 artifacts/
 Data/
-
 DAproject.ipynb
 
 # Byte-compiled / optimized / DLL files

@@ -19,6 +19,7 @@ stages:
       - artifacts/validation/status.txt
 
   preprocessing:
+  
     cmd: python src/data_preprocessing.py
     deps:
       - src/data_preprocessing.py
