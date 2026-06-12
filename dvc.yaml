@@ -60,3 +60,14 @@ stages:
 
     outs:
       - artifacts/split
+
+  training:
+    cmd: python src/model_trainer.py
+    deps:
+      - src/model_trainer.py
+      - artifacts/split
+    params:
+      - model.n_estimators
+      - model.max_depth
+    outs:
+      - artifacts/model/model.pkl

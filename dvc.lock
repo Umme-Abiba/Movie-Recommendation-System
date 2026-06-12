@@ -102,3 +102,24 @@ stages:
       md5: a6ec92f42ec46425badbc471f16515c0.dir
       size: 1829963
       nfiles: 4
+  training:
+    cmd: python src/model_trainer.py
+    deps:
+    - path: artifacts/split
+      hash: md5
+      md5: a6ec92f42ec46425badbc471f16515c0.dir
+      size: 1829963
+      nfiles: 4
+    - path: src/model_trainer.py
+      hash: md5
+      md5: f3f25426a0fbccc665fd2b15b05223cc
+      size: 1646
+    params:
+      params.yaml:
+        model.max_depth: 10
+        model.n_estimators: 100
+    outs:
+    - path: artifacts/model/model.pkl
+      hash: md5
+      md5: e8288edd8f1a50f402f3b5650d292f60
+      size: 5974033
