@@ -71,3 +71,11 @@ stages:
       - model.max_depth
     outs:
       - artifacts/model/model.pkl
+  evaluation:
+    cmd: python src/model_evaluation.py 
+    deps:
+      - src/model_evaluation.py
+      - artifacts/model/model.pkl
+      - artifacts/split
+    outs:
+      - artifacts/evaluation/metrics.json

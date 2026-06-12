@@ -123,3 +123,24 @@ stages:
       hash: md5
       md5: e8288edd8f1a50f402f3b5650d292f60
       size: 5974033
+  evaluation:
+    cmd: python src/model_evaluation.py
+    deps:
+    - path: artifacts/model/model.pkl
+      hash: md5
+      md5: e8288edd8f1a50f402f3b5650d292f60
+      size: 5974033
+    - path: artifacts/split
+      hash: md5
+      md5: a6ec92f42ec46425badbc471f16515c0.dir
+      size: 1829963
+      nfiles: 4
+    - path: src/model_evaluation.py
+      hash: md5
+      md5: 5134c7d81adcf6d02ff8ab7530acf167
+      size: 1576
+    outs:
+    - path: artifacts/evaluation/metrics.json
+      hash: md5
+      md5: 3d43219bc01bf2a55686a55c01dae53f
+      size: 97
