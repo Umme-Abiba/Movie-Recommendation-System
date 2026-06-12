@@ -1,14 +1,10 @@
-data_ingestion:
-  input_path: data/movies_metadata.csv
-  output_path: artifacts/raw/raw_data.csv
+data_split:
+  test_size: 0.2
+  random_state: 42
 
-feature_engineering:
-  input_path: artifacts/processed/cleaned_data.csv
-  output_path: artifacts/featured/featured_data.csv
+training:
+  target_column: revenue
 
-model_training:
-  input_path: artifacts/featured/featured_data.csv
-  output_dir: artifacts/model
-
-  max_features: 5000
-  stop_words: english
+model:
+  n_estimators: 100
+  max_depth: 10

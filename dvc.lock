@@ -57,20 +57,20 @@ stages:
       size: 4827749
     - path: src/feature_engineering.py
       hash: md5
-      md5: 36872dc5048e23772c4eb796ead3f77b
-      size: 2645
+      md5: 5aed0cc3a61e402c9a327d017c7adee3
+      size: 2352
     outs:
     - path: artifacts/featured/featured_data.csv
       hash: md5
-      md5: 1783502f6084b749a8364bbb062a1232
-      size: 5308551
+      md5: e45f4ba3f00437f7083e1d6240e5cb47
+      size: 1784461
   feature_store:
     cmd: python src/feature_store.py
     deps:
     - path: artifacts/featured/featured_data.csv
       hash: md5
-      md5: 1783502f6084b749a8364bbb062a1232
-      size: 5308551
+      md5: e45f4ba3f00437f7083e1d6240e5cb47
+      size: 1784461
     - path: src/feature_store.py
       hash: md5
       md5: 787eb866b3f940498f55f6c00b9ab5d8
@@ -78,5 +78,27 @@ stages:
     outs:
     - path: artifacts/feature_store/features.csv
       hash: md5
-      md5: 1783502f6084b749a8364bbb062a1232
-      size: 5308551
+      md5: e45f4ba3f00437f7083e1d6240e5cb47
+      size: 1784461
+  split:
+    cmd: python src/train_test_split.py
+    deps:
+    - path: artifacts/feature_store/features.csv
+      hash: md5
+      md5: e45f4ba3f00437f7083e1d6240e5cb47
+      size: 1784461
+    - path: src/train_test_split.py
+      hash: md5
+      md5: 5ad97e2499df7d446b48711dd684d44d
+      size: 1697
+    params:
+      params.yaml:
+        data_split.random_state: 42
+        data_split.test_size: 0.2
+        training.target_column: revenue
+    outs:
+    - path: artifacts/split
+      hash: md5
+      md5: a6ec92f42ec46425badbc471f16515c0.dir
+      size: 1829963
+      nfiles: 4

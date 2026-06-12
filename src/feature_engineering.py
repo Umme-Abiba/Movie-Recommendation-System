@@ -5,9 +5,14 @@ import pandas as pd
 class FeatureEngineering:
 
     def __init__(self):
-        self.input_path = "artifacts/processed/cleaned_data.csv"
 
-        self.output_dir = "artifacts/featured"
+        self.input_path = (
+            "artifacts/processed/cleaned_data.csv"
+        )
+
+        self.output_dir = (
+            "artifacts/featured"
+        )
 
         self.output_file = os.path.join(
             self.output_dir,
@@ -18,7 +23,9 @@ class FeatureEngineering:
 
         print("Loading cleaned data...")
 
-        df = pd.read_csv(self.input_path)
+        df = pd.read_csv(
+            self.input_path
+        )
 
         return df
 
@@ -38,55 +45,40 @@ class FeatureEngineering:
                 df["release_date"].dt.year
             )
 
-        # Budget numeric
-        if "budget" in df.columns:
-
-            df["budget"] = pd.to_numeric(
-                df["budget"],
-                errors="coerce"
+            # Remove original date column
+            df.drop(
+                columns=["release_date"],
+                inplace=True
             )
 
-        # Runtime numeric
-        if "runtime" in df.columns:
+        # Convert genres to numeric
+        if "genres" in df.columns:
 
-            df["runtime"] = pd.to_numeric(
-                df["runtime"],
-                errors="coerce"
+            df["genres"] = (
+                df["genres"]
+                .astype("category")
+                .cat.codes
             )
 
-        # Popularity numeric
-        if "popularity" in df.columns:
+        numeric_columns = [
+            "budget",
+            "popularity",
+            "runtime",
+            "vote_average",
+            "revenue"
+        ]
 
-            df["popularity"] = pd.to_numeric(
-                df["popularity"],
-                errors="coerce"
-            )
+        for col in numeric_columns:
 
-        # Vote average numeric
-        if "vote_average" in df.columns:
+            if col in df.columns:
 
-            df["vote_average"] = pd.to_numeric(
-                df["vote_average"],
-                errors="coerce"
-            )
+                df[col] = pd.to_numeric(
+                    df[col],
+                    errors="coerce"
+                )
 
-        # Revenue numeric
-        if "revenue" in df.columns:
-
-            df["revenue"] = pd.to_numeric(
-                df["revenue"],
-                errors="coerce"
-            )
-
-        # Profit feature
-        if (
-            "budget" in df.columns
-            and "revenue" in df.columns
-        ):
-
-            df["profit"] = (
-                df["revenue"] - df["budget"]
-            )
+        # Fill any remaining null values
+        df = df.fillna(0)
 
         return df
 
@@ -114,7 +106,9 @@ class FeatureEngineering:
 
         self.save_data(df)
 
-        print("Feature Engineering Completed")
+        print(
+            "Feature Engineering Completed"
+        )
 
 
 if __name__ == "__main__":

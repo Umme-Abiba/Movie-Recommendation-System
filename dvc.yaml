@@ -45,3 +45,18 @@ stages:
       - artifacts/featured/featured_data.csv
     outs:
       - artifacts/feature_store/features.csv
+
+  split:
+    cmd: python src/train_test_split.py
+
+    deps:
+      - src/train_test_split.py
+      - artifacts/feature_store/features.csv
+
+    params:
+      - data_split.test_size
+      - data_split.random_state
+      - training.target_column
+
+    outs:
+      - artifacts/split
