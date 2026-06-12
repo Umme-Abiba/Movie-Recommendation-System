@@ -64,3 +64,19 @@ stages:
       hash: md5
       md5: 1783502f6084b749a8364bbb062a1232
       size: 5308551
+  feature_store:
+    cmd: python src/feature_store.py
+    deps:
+    - path: artifacts/featured/featured_data.csv
+      hash: md5
+      md5: 1783502f6084b749a8364bbb062a1232
+      size: 5308551
+    - path: src/feature_store.py
+      hash: md5
+      md5: 787eb866b3f940498f55f6c00b9ab5d8
+      size: 664
+    outs:
+    - path: artifacts/feature_store/features.csv
+      hash: md5
+      md5: 1783502f6084b749a8364bbb062a1232
+      size: 5308551

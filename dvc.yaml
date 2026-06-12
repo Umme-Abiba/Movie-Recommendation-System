@@ -36,3 +36,12 @@ stages:
 
     outs:
       - artifacts/featured/featured_data.csv
+
+      
+  feature_store:
+    cmd: python src/feature_store.py
+    deps:
+      - src/feature_store.py
+      - artifacts/featured/featured_data.csv
+    outs:
+      - artifacts/feature_store/features.csv
